@@ -1,1302 +1,144 @@
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>SnowMove - Safer Winter Travel</title>
-
-<style>
-:root {
-  --navy:#102c43;
-  --blue:#147bb2;
-  --ice:#eaf7ff;
-  --cyan:#8ed8f8;
-  --ink:#17344b;
-  --muted:#587286;
-  --green:#16845b;
-}
-
-* {
-  box-sizing:border-box;
-  scroll-behavior:smooth;
-}
-
-body {
-  margin:0;
-  font-family:Arial,sans-serif;
-  color:var(--ink);
-  background:#f4faff;
-  line-height:1.6;
-}
-
-nav {
-  position:sticky;
-  top:0;
-  z-index:100;
-  background:var(--navy);
-  color:white;
-  padding:14px 6%;
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  flex-wrap:wrap;
-  gap:12px;
-}
-
-.logo {
-  font-size:25px;
-  font-weight:800;
-}
-
-.logo span {color:var(--cyan)}
-
-nav .links {
-  display:flex;
-  flex-wrap:wrap;
-  gap:15px;
-}
-
-nav a {
-  color:white;
-  text-decoration:none;
-  font-size:14px;
-}
-
-nav a:hover {color:var(--cyan)}
-
-.hero {
-  min-height:75vh;
-  display:flex;
-  align-items:center;
-  padding:80px 8%;
-  color:white;
-  background:
-    linear-gradient(90deg,rgba(5,29,51,.9),rgba(5,44,75,.35)),
-    url("https://images.unsplash.com/photo-1483664852095-d6cc6870702d?auto=format&fit=crop&w=1800&q=85")
-    center/cover;
-}
-
-.hero-content {max-width:750px}
-
-.hero h1 {
-  font-size:clamp(40px,7vw,75px);
-  line-height:1.05;
-  margin:15px 0;
-}
-
-.hero p {
-  font-size:18px;
-  color:#e3f4ff;
-}
-
-.hero button {
-  background:var(--cyan);
-  color:var(--navy);
-}
-
-section {
-  padding:65px 7%;
-  scroll-margin-top:80px;
-}
-
-.alt {background:#eaf6fd}
-
-.section-head {
-  max-width:750px;
-  margin:0 auto 35px;
-  text-align:center;
-}
-
-.section-head h2 {
-  color:var(--navy);
-  font-size:34px;
-  margin:8px 0;
-}
-
-.section-head p {color:var(--muted)}
-
-.tag {
-  display:inline-block;
-  padding:5px 13px;
-  border-radius:25px;
-  background:#dff3ff;
-  color:#12618e;
-  font-size:12px;
-  font-weight:bold;
-}
-
-.grid {
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
-  gap:18px;
-}
-
-.card,.panel {
-  background:white;
-  border:1px solid #dcecf6;
-  border-radius:17px;
-  padding:22px;
-  box-shadow:0 8px 24px rgba(20,74,110,.06);
-}
-
-.card h3,.panel h3 {color:var(--navy)}
-.card p,.muted {color:var(--muted)}
-
-.icon {font-size:30px}
-
-.problem {
-  max-width:900px;
-  margin:auto;
-  background:white;
-  padding:25px;
-  border-left:5px solid var(--blue);
-  border-radius:13px;
-}
-
-.diagram {
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(190px,1fr));
-  gap:15px;
-}
-
-.diagram .card {border-top:4px solid #65bfe9}
-
-.steps {
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(160px,1fr));
-  gap:14px;
-}
-
-.step {
-  padding:18px;
-  background:white;
-  border:1px solid #dcecf6;
-  border-radius:13px;
-}
-
-.step b {color:var(--blue)}
-
-.solution {
-  background:linear-gradient(135deg,#0a2b49,#126a9e);
-  color:white;
-}
-
-.solution h2,.solution p {color:white}
-.solution .card {background:rgba(255,255,255,.1)}
-.solution .card h3,.solution .card p {color:white}
-
-button {
-  font:inherit;
-  border:0;
-  cursor:pointer;
-  border-radius:30px;
-  padding:12px 18px;
-  font-weight:bold;
-  background:var(--blue);
-  color:white;
-  margin:5px 4px 5px 0;
-}
-
-button.secondary {
-  background:#e3f4fd;
-  color:#10577e;
-}
-
-button:disabled {
-  opacity:.55;
-  cursor:not-allowed;
-}
-
-input,select {
-  width:100%;
-  padding:12px;
-  border:1px solid #c9deeb;
-  border-radius:10px;
-  font:inherit;
-  margin:7px 0 15px;
-  background:white;
-  color:var(--ink);
-}
-
-label {font-weight:bold}
-
-.status {
-  background:#eef8fd;
-  border:1px solid #d2eaf7;
-  padding:13px;
-  border-radius:12px;
-  margin:12px 0;
-  overflow-wrap:anywhere;
-}
-
-.weather-box {
-  background:white;
-  border:1px solid #cfe6f5;
-  border-radius:16px;
-  padding:20px;
-  margin-top:18px;
-}
-
-.weather-current {
-  background:linear-gradient(135deg,#0c4168,#1685bb);
-  color:white;
-  border-radius:14px;
-  padding:22px;
-  margin:15px 0;
-}
-
-.weather-current h2 {
-  font-size:42px;
-  margin:5px 0;
-}
-
-.weather-current p {margin:5px 0}
-
-.forecast-grid {
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(125px,1fr));
-  gap:12px;
-  margin-top:15px;
-}
-
-.forecast-item {
-  background:#edf8ff;
-  border-radius:12px;
-  padding:13px;
-  text-align:center;
-  overflow-wrap:anywhere;
-}
-
-.forecast-item strong {
-  display:block;
-  color:#123d5c;
-}
-
-.snow-alert {
-  padding:16px;
-  border-radius:12px;
-  margin:15px 0;
-  background:#fff3dc;
-  border:1px solid #f1d18b;
-  color:#704600;
-}
-
-.snow-alert.safe {
-  background:#eaf9f0;
-  border-color:#a9dfbd;
-  color:#17623d;
-}
-
-.snow-alert.error {
-  background:#fff0f0;
-  border-color:#efbaba;
-  color:#8c2525;
-}
-
-.map-frame {
-  width:100%;
-  height:350px;
-  border:0;
-  border-radius:14px;
-}
-
-.alert-row {
-  display:flex;
-  gap:12px;
-  padding:12px 0;
-  border-bottom:1px solid #e5f0f6;
-}
-
-.dot {
-  width:11px;
-  height:11px;
-  border-radius:50%;
-  background:#e5a12b;
-  margin-top:7px;
-  flex:none;
-}
-
-.dot.info {background:#2196c9}
-.dot.safe {background:#28a36a}
-
-footer {
-  text-align:center;
-  background:#061b2d;
-  color:#cce6f5;
-  padding:30px 8%;
-}
-
-@media(max-width:700px) {
-  nav {
-    align-items:flex-start;
-    flex-direction:column;
-  }
-
-  nav .links {gap:10px}
-  .hero {min-height:65vh;padding:60px 7%}
-  section {padding:50px 6%}
-  .map-frame {height:280px}
-}
-</style>
-</head>
-
-<body>
-
-<nav>
-  <div class="logo">❄ Snow<span>Move</span></div>
-
-  <div class="links">
-    <a href="#problem">Problem</a>
-    <a href="#affinity">Affinity Map</a>
-    <a href="#empathy">Empathy Map</a>
-    <a href="#journey">User Journey</a>
-    <a href="#solutions">Solutions</a>
-    <a href="#live-tools">Live Tools</a>
-  </div>
-</nav>
-
-<header class="hero">
-  <div class="hero-content">
-    <span class="tag">DESIGN THINKING PROJECT</span>
-    <h1>When Snow Falls,<br>Movement Stops.</h1>
-
-    <p>
-      Making winter transportation safer with
-      weather updates, GPS location, snow alerts
-      and travel directions.
-    </p>
-
-    <button onclick="document.getElementById('live-tools').scrollIntoView()">
-      Explore Live Tools ↓
-    </button>
-  </div>
-</header>
-
-<!-- PROBLEM -->
-
-<section id="problem">
-  <div class="section-head">
-    <span class="tag">01 · UNDERSTAND</span>
-    <h2>Problem Identification</h2>
-    <p>Understanding transportation difficulties caused by snowfall.</p>
-  </div>
-
-  <div class="problem">
-    <strong>Problem statement:</strong>
-    Heavy snowfall can cover roads, reduce visibility,
-    create slippery surfaces and delay public transport.
-    This makes it difficult for students, workers and
-    local residents to travel safely and reach destinations on time.
-  </div>
-
-  <div class="grid" style="margin-top:22px">
-
-    <div class="card">
-      <div class="icon">🚗</div>
-      <h3>Blocked Roads</h3>
-      <p>Snow accumulation makes roads difficult to use.</p>
-    </div>
-
-    <div class="card">
-      <div class="icon">🚌</div>
-      <h3>Transport Delays</h3>
-      <p>Buses and public transport may be delayed.</p>
-    </div>
-
-    <div class="card">
-      <div class="icon">🧊</div>
-      <h3>Slippery Roads</h3>
-      <p>Ice increases the risk of accidents.</p>
-    </div>
-
-    <div class="card">
-      <div class="icon">🌨️</div>
-      <h3>Low Visibility</h3>
-      <p>Snowstorms make it harder to see the road.</p>
-    </div>
-
-  </div>
-</section>
-
-<!-- AFFINITY MAP -->
-
-<section class="alt" id="affinity">
-  <div class="section-head">
-    <span class="tag">02 · ORGANISE INSIGHTS</span>
-    <h2>Affinity Diagram</h2>
-    <p>Grouping related problems into important categories.</p>
-  </div>
-
-  <div class="diagram">
-
-    <div class="card">
-      <div class="icon">🛣️</div>
-      <h3>Road Conditions</h3>
-      <p>Snow-covered roads, black ice and blocked routes.</p>
-    </div>
-
-    <div class="card">
-      <div class="icon">🚍</div>
-      <h3>Public Transport</h3>
-      <p>Bus delays, cancelled services and limited availability.</p>
-    </div>
-
-    <div class="card">
-      <div class="icon">🧍</div>
-      <h3>People's Safety</h3>
-      <p>Falls, injuries, cold exposure and travel anxiety.</p>
-    </div>
-
-    <div class="card">
-      <div class="icon">📡</div>
-      <h3>Information Gaps</h3>
-      <p>Late alerts, unclear road updates and uncertain travel times.</p>
-    </div>
-
-  </div>
-</section>
-
-<!-- EMPATHY MAP -->
-
-<section id="empathy">
-  <div class="section-head">
-    <span class="tag">03 · UNDERSTAND PEOPLE</span>
-    <h2>Empathy Map</h2>
-    <p>Understanding the experience of a person travelling during snowfall.</p>
-  </div>
-
-  <div class="grid">
-
-    <div class="card">
-      <h3>💭 Thinks</h3>
-      <p>Will I reach college on time? Is the road safe?</p>
-    </div>
-
-    <div class="card">
-      <h3>❤️ Feels</h3>
-      <p>Worried, cold, stressed and uncertain.</p>
-    </div>
-
-    <div class="card">
-      <h3>🗣️ Says</h3>
-      <p>The bus is late. I need a road update.</p>
-    </div>
-
-    <div class="card">
-      <h3>👣 Does</h3>
-      <p>Checks weather, waits for transport and searches for safer routes.</p>
-    </div>
-
-  </div>
-</section>
-
-<!-- USER JOURNEY -->
-
-<section class="alt" id="journey">
-  <div class="section-head">
-    <span class="tag">04 · USER EXPERIENCE</span>
-    <h2>User Journey Map</h2>
-    <p>A student travelling during a snowy day.</p>
-  </div>
-
-  <div class="steps">
-
-    <div class="step">
-      <b>01 · Plans</b>
-      <h3>Gets Ready</h3>
-      <p>Checks weather and plans the trip.</p>
-    </div>
-
-    <div class="step">
-      <b>02 · Travels</b>
-      <h3>Leaves Home</h3>
-      <p>Finds snow on roads and low visibility.</p>
-    </div>
-
-    <div class="step">
-      <b>03 · Faces Issue</b>
-      <h3>Transport Delay</h3>
-      <p>Experiences delays or route changes.</p>
-    </div>
-
-    <div class="step">
-      <b>04 · Responds</b>
-      <h3>Finds Updates</h3>
-      <p>Looks for weather and route information.</p>
-    </div>
-
-    <div class="step">
-      <b>05 · Reaches</b>
-      <h3>Arrives</h3>
-      <p>Reaches the destination after extra time.</p>
-    </div>
-
-  </div>
-</section>
-
-<!-- SOLUTIONS -->
-
-<section class="solution" id="solutions">
-  <div class="section-head">
-    <span class="tag">05 · IDEATE</span>
-    <h2>Possible Solutions</h2>
-    <p>Ideas to make winter transportation safer.</p>
-  </div>
-
-  <div class="grid">
-
-    <div class="card">
-      <div class="icon">📱</div>
-      <h3>Live Snow Alerts</h3>
-      <p>Provide weather and snowfall notifications.</p>
-    </div>
-
-    <div class="card">
-      <div class="icon">🧭</div>
-      <h3>Safe Route Guidance</h3>
-      <p>Help travellers find directions to destinations.</p>
-    </div>
-
-    <div class="card">
-      <div class="icon">🚜</div>
-      <h3>Snow Clearance Updates</h3>
-      <p>Share road-clearing information.</p>
-    </div>
-
-    <div class="card">
-      <div class="icon">🚌</div>
-      <h3>Transport Updates</h3>
-      <p>Share transport service changes.</p>
-    </div>
-
-  </div>
-</section>
-
-<!-- LIVE TOOLS -->
-
-<section class="alt" id="live-tools">
-
-  <div class="section-head">
-    <span class="tag">06 · INTERACTIVE PROTOTYPE</span>
-    <h2>Live Tools</h2>
-    <p>GPS, weather forecasts, snow alerts and directions.</p>
-  </div>
-
-  <div class="grid">
-
-    <!-- ALERTS -->
-
-    <div class="panel">
-      <h3>📲 Mobile Notifications</h3>
-
-      <p class="muted">
-        Enable browser notifications to receive SnowMove demo alerts.
-      </p>
-
-      <button id="enableNotifications">
-        Enable Notifications
-      </button>
-
-      <button class="secondary" id="testNotification" disabled>
-        Send Test Alert
-      </button>
-
-      <div class="status" id="notificationStatus">
-        Notifications are not enabled.
-      </div>
-
-      <div class="alert-row">
-        <span class="dot"></span>
-        <div>
-          <strong>Snowfall Warning</strong>
-          <p class="muted">Heavy snowfall may reduce visibility.</p>
-        </div>
-      </div>
-
-      <div class="alert-row">
-        <span class="dot info"></span>
-        <div>
-          <strong>Transport Update</strong>
-          <p class="muted">Check your transport provider before travelling.</p>
-        </div>
-      </div>
-
-      <div class="alert-row">
-        <span class="dot safe"></span>
-        <div>
-          <strong>Safety Reminder</strong>
-          <p class="muted">Avoid unnecessary travel during severe conditions.</p>
-        </div>
-      </div>
-
-    </div>
-
-    <!-- GPS AND DIRECTIONS -->
-
-    <div class="panel">
-      <h3>📍 GPS Location & Directions</h3>
-
-      <p class="muted">
-        Find your current location and get directions to your destination.
-      </p>
-
-      <button id="locateBtn">
-        Use My Current Location
-      </button>
-
-      <div class="status" id="gpsStatus">
-        Your GPS location has not been detected.
-      </div>
-
-      <label for="destination">Enter Destination</label>
-
-      <input
-        id="destination"
-        type="text"
-        placeholder="Example: Chandigarh Railway Station">
-
-      <label for="travelMode">Travel Mode</label>
-
-      <select id="travelMode">
-        <option value="driving">Driving</option>
-        <option value="walking">Walking</option>
-        <option value="bicycling">Cycling</option>
-        <option value="transit">Public Transport</option>
-      </select>
-
-      <button id="directionsBtn">
-        🧭 Get Directions
-      </button>
-
-      <div class="status" id="directionsStatus">
-        Detect your location and enter a destination.
-      </div>
-
-    </div>
-
-  </div>
-
-  <!-- SNOW ALERT -->
-
-  <div class="weather-box">
-    <h2>🌨️ Live Snow Alert</h2>
-
-    <p class="muted">
-      Check current snowfall and the next 24 hours of weather at your GPS location.
-    </p>
-
-    <button id="checkWeatherBtn">
-      Check Live Snow Alert & Forecast
-    </button>
-
-    <div id="snowAlert" class="snow-alert">
-      First detect your GPS location, then check live weather.
-    </div>
-  </div>
-
-  <!-- CURRENT WEATHER -->
-
-  <div class="weather-box">
-    <h2>🌤️ Current Weather</h2>
-
-    <div id="currentWeather" class="weather-current">
-      <h3>Weather information</h3>
-      <p>Waiting for your GPS location...</p>
-    </div>
-  </div>
-
-  <!-- FORECAST -->
-
-  <div class="weather-box">
-    <h2>🕒 Next 24 Hours Weather Forecast</h2>
-
-    <div id="forecastGrid" class="forecast-grid">
-      <p>Forecast will appear here after checking weather.</p>
-    </div>
-
-    <p class="muted" id="weatherUpdated"></p>
-  </div>
-
-  <!-- MAP -->
-
-  <div class="weather-box">
-    <h2>🗺️ Your Location Map</h2>
-
-    <iframe
-      id="mapFrame"
-      class="map-frame"
-      title="Your location map"
-      loading="lazy"
-      src="https://www.openstreetmap.org/export/embed.html?bbox=76.7%2C30.5%2C77.1%2C30.9&layer=mapnik">
-    </iframe>
-
-    <p class="muted">
-      Map provided by OpenStreetMap.
-    </p>
-  </div>
-
-  <!-- CHECKLIST -->
-
-  <div class="weather-box">
-    <h2>🚨 Emergency Travel Checklist</h2>
-
-    <div class="grid">
-
-      <div>
-        <h3>Before Leaving</h3>
-        <p class="muted">Check official weather and road advisories.</p>
-      </div>
-
-      <div>
-        <h3>While Travelling</h3>
-        <p class="muted">Drive slowly and avoid icy roads.</p>
-      </div>
-
-      <div>
-        <h3>If Conditions Worsen</h3>
-        <p class="muted">Stop somewhere safe and contact local emergency services if necessary.</p>
-      </div>
-
-    </div>
-  </div>
-
-</section>
-
-<!-- CONCLUSION -->
-
-<section>
-  <div class="section-head">
-    <span class="tag">07 · CONCLUSION</span>
-    <h2>Making Winter Travel Safer</h2>
-
-    <p>
-      Snowfall is a natural challenge, but better information,
-      weather alerts, GPS and safer travel planning can help
-      people travel with greater confidence.
-    </p>
-  </div>
-
-  <div class="problem" style="text-align:center">
-    <h3>
-      "A safer journey begins with understanding the traveller."
-    </h3>
-
-    <p>
-      Design thinking helps us understand real needs
-      and create human-centred solutions.
-    </p>
-  </div>
-</section>
-
-<footer>
-  <strong>❄ SnowMove</strong>
-  <p>Design Thinking Project · Snowfall & Transportation</p>
-  <small>Safer Winter Travel</small>
-</footer>
-
-<script>
-
-// ========================================
-// SNOWMOVE GPS SYSTEM
-// ========================================
-
-let currentCoords = null;
-
-const gpsStatus = document.getElementById("gpsStatus");
-const locateBtn = document.getElementById("locateBtn");
-const mapFrame = document.getElementById("mapFrame");
-
-locateBtn.addEventListener("click", function() {
-
-  if (!navigator.geolocation) {
-    gpsStatus.textContent = "GPS is not supported by this browser.";
-    return;
-  }
-
-  locateBtn.disabled = true;
-  locateBtn.textContent = "Finding Location...";
-
-  gpsStatus.textContent = "Please allow location permission.";
-
-  navigator.geolocation.getCurrentPosition(
-
-    function(position) {
-
-      currentCoords = {
-        lat: position.coords.latitude,
-        lon: position.coords.longitude
-      };
-
-      gpsStatus.textContent =
-        "Your location: " +
-        currentCoords.lat.toFixed(5) + ", " +
-        currentCoords.lon.toFixed(5) +
-        ". Accuracy: approximately " +
-        Math.round(position.coords.accuracy) + " metres.";
-
-      mapFrame.src =
-        "https://www.openstreetmap.org/export/embed.html?bbox=" +
-        (currentCoords.lon - 0.01) + "%2C" +
-        (currentCoords.lat - 0.01) + "%2C" +
-        (currentCoords.lon + 0.01) + "%2C" +
-        (currentCoords.lat + 0.01) +
-        "&layer=mapnik&marker=" +
-        currentCoords.lat + "%2C" + currentCoords.lon;
-
-      locateBtn.disabled = false;
-      locateBtn.textContent = "Refresh My Location";
-
-    },
-
-    function(error) {
-
-      const messages = {
-        1: "Location permission denied. Allow it in browser settings.",
-        2: "Location unavailable. Check GPS or internet.",
-        3: "Location request timed out. Try again."
-      };
-
-      gpsStatus.textContent =
-        messages[error.code] || "Unable to find your location.";
-
-      locateBtn.disabled = false;
-      locateBtn.textContent = "Try Again";
-
-    },
-
-    {
-      enableHighAccuracy:true,
-      timeout:15000,
-      maximumAge:0
-    }
-
-  );
-
-});
-
-
-// ========================================
-// GOOGLE MAPS DIRECTIONS
-// ========================================
-
-document.getElementById("directionsBtn")
-.addEventListener("click", function() {
-
-  const destination =
-    document.getElementById("destination").value.trim();
-
-  const mode =
-    document.getElementById("travelMode").value;
-
-  const output =
-    document.getElementById("directionsStatus");
-
-  if (!currentCoords) {
-    output.textContent = "Please detect your GPS location first.";
-    return;
-  }
-
-  if (!destination) {
-    output.textContent = "Please enter your destination.";
-    return;
-  }
-
-  const origin =
-    currentCoords.lat + "," + currentCoords.lon;
-
-  const url =
-    "https://www.google.com/maps/dir/?api=1" +
-    "&origin=" + encodeURIComponent(origin) +
-    "&destination=" + encodeURIComponent(destination) +
-    "&travelmode=" + encodeURIComponent(mode);
-
-  output.textContent = "Opening Google Maps directions...";
-
-  window.open(url, "_blank", "noopener,noreferrer");
-
-});
-
-
-// ========================================
-// WEATHER DESCRIPTION
-// ========================================
-
-function weatherDescription(code) {
-
-  const descriptions = {
-    0:"Clear Sky ☀️",
-    1:"Mainly Clear 🌤️",
-    2:"Partly Cloudy ⛅",
-    3:"Overcast ☁️",
-    45:"Fog 🌫️",
-    48:"Freezing Fog 🌫️",
-    51:"Light Drizzle 🌦️",
-    53:"Drizzle 🌦️",
-    55:"Heavy Drizzle 🌧️",
-    61:"Light Rain 🌧️",
-    63:"Rain 🌧️",
-    65:"Heavy Rain 🌧️",
-    71:"Light Snowfall ❄️",
-    73:"Snowfall 🌨️",
-    75:"Heavy Snowfall ❄️",
-    77:"Snow Grains ❄️",
-    80:"Rain Showers 🌧️",
-    81:"Rain Showers 🌧️",
-    82:"Heavy Rain Showers 🌧️",
-    85:"Snow Showers 🌨️",
-    86:"Heavy Snow Showers ❄️",
-    95:"Thunderstorm ⛈️",
-    96:"Thunderstorm with Hail ⛈️",
-    99:"Severe Thunderstorm ⛈️"
-  };
-
-  return descriptions[code] || "Unknown Conditions";
-
-}
-
-
-// ========================================
-// SNOW ALERT AND WEATHER FORECAST
-// ========================================
-
-const checkWeatherBtn =
-  document.getElementById("checkWeatherBtn");
-
-checkWeatherBtn.addEventListener("click", loadSnowWeather);
-
 async function loadSnowWeather() {
+  const alertBox = document.getElementById("snowAlert");
+  const currentBox = document.getElementById("currentWeather");
+  const forecastBox = document.getElementById("forecastGrid");
+  const updated = document.getElementById("weatherUpdated");
 
-  const alertBox =
-    document.getElementById("snowAlert");
-
-  const currentBox =
-    document.getElementById("currentWeather");
-
-  const forecastBox =
-    document.getElementById("forecastGrid");
-
-  const updated =
-    document.getElementById("weatherUpdated");
+  if (!alertBox || !currentBox || !forecastBox) {
+    alert("Snow alert HTML section is missing. Check your element IDs.");
+    return;
+  }
 
   if (!currentCoords) {
-
     alertBox.className = "snow-alert error";
-
     alertBox.textContent =
-      "Please detect your GPS location first.";
-
+      "GPS location not found. Click Use My Current Location first.";
     return;
   }
 
   checkWeatherBtn.disabled = true;
-  checkWeatherBtn.textContent = "Checking Weather...";
+  checkWeatherBtn.textContent = "Loading weather...";
 
   alertBox.className = "snow-alert";
-  alertBox.textContent = "Getting latest weather information...";
+  alertBox.textContent = "Connecting to live weather service...";
 
   try {
-
-    const parameters = new URLSearchParams({
-
-      latitude:currentCoords.lat,
-      longitude:currentCoords.lon,
-
-      current:
-        "temperature_2m,relative_humidity_2m,apparent_temperature,precipitation,rain,snowfall,weather_code,wind_speed_10m",
-
-      hourly:
-        "temperature_2m,precipitation_probability,snowfall,weather_code",
-
-      forecast_days:"2",
-      timezone:"auto"
-
+    const params = new URLSearchParams({
+      latitude: currentCoords.lat,
+      longitude: currentCoords.lon,
+      current: "temperature_2m,relative_humidity_2m,apparent_temperature,snowfall,weather_code,wind_speed_10m",
+      hourly: "temperature_2m,snowfall,precipitation_probability,weather_code",
+      forecast_days: "2",
+      timezone: "auto"
     });
 
     const response = await fetch(
-      "https://api.open-meteo.com/v1/forecast?" +
-      parameters.toString()
+      "https://api.open-meteo.com/v1/forecast?" + params
     );
 
     if (!response.ok) {
-      throw new Error("Weather service is unavailable.");
+      throw new Error("Weather API error: " + response.status);
     }
 
     const data = await response.json();
 
     if (!data.current || !data.hourly) {
-      throw new Error("Weather information is incomplete.");
+      throw new Error("Weather data is missing.");
     }
 
     const now = data.current;
     const hourly = data.hourly;
 
-    // CURRENT WEATHER
-
-    currentBox.innerHTML = "";
-
-    const temperature = document.createElement("h2");
-    temperature.textContent = now.temperature_2m + "°C";
-
-    const condition = document.createElement("h3");
-    condition.textContent =
-      weatherDescription(now.weather_code);
-
-    currentBox.append(
-      temperature,
-      condition
-    );
-
-    const currentDetails = [
-      "Feels like: " + now.apparent_temperature + "°C",
-      "Humidity: " + now.relative_humidity_2m + "%",
-      "Wind speed: " + now.wind_speed_10m + " km/h",
-      "Current snowfall: " + now.snowfall + " cm",
-      "Precipitation: " + now.precipitation + " mm"
-    ];
-
-    currentDetails.forEach(function(detail) {
-      const p = document.createElement("p");
-      p.textContent = detail;
-      currentBox.appendChild(p);
-    });
-
-    // 24-HOUR FORECAST
+    currentBox.innerHTML = `
+      <h2>${now.temperature_2m}°C</h2>
+      <h3>${weatherDescription(now.weather_code)}</h3>
+      <p>Feels like: ${now.apparent_temperature}°C</p>
+      <p>Humidity: ${now.relative_humidity_2m}%</p>
+      <p>Wind: ${now.wind_speed_10m} km/h</p>
+      <p>Current snowfall: ${now.snowfall} cm</p>
+    `;
 
     forecastBox.innerHTML = "";
 
-    const currentTime = new Date(now.time).getTime();
+    const snowCodes = [71, 73, 75, 77, 85, 86];
+    const nowTime = new Date(now.time).getTime();
 
     let snowExpected = false;
-    let highestSnow = 0;
-    let forecastTime = "";
+    let maxSnow = 0;
+    let snowTime = "";
 
     for (let i = 0; i < hourly.time.length; i++) {
+      const forecastDate = new Date(hourly.time[i]);
+      const hoursAhead = (forecastDate.getTime() - nowTime) / 3600000;
 
-      const forecastTimestamp =
-        new Date(hourly.time[i]).getTime();
+      if (hoursAhead < 0 || hoursAhead > 24) continue;
 
-      const hoursAhead =
-        (forecastTimestamp - currentTime) / 3600000;
-
-      if (hoursAhead < 0 || hoursAhead > 24) {
-        continue;
-      }
-
-      const snow =
-        Number(hourly.snowfall[i] || 0);
-
-      const code =
-        Number(hourly.weather_code[i]);
-
-      const snowCodes = [71,73,75,77,85,86];
+      const snow = Number(hourly.snowfall[i] || 0);
+      const code = Number(hourly.weather_code[i]);
 
       if (snow > 0 || snowCodes.includes(code)) {
-
         snowExpected = true;
 
-        if (snow > highestSnow) {
-          highestSnow = snow;
-
-          forecastTime =
-            new Date(hourly.time[i]).toLocaleTimeString(
-              [],
-              {hour:"numeric",minute:"2-digit"}
-            );
+        if (snow > maxSnow) {
+          maxSnow = snow;
+          snowTime = forecastDate.toLocaleTimeString([], {
+            hour: "numeric",
+            minute: "2-digit"
+          });
         }
-
       }
 
-      // Show forecast every three hours.
-
       if (Math.round(hoursAhead) % 3 === 0) {
-
         const item = document.createElement("div");
         item.className = "forecast-item";
 
-        const time = document.createElement("strong");
-
-        time.textContent =
-          new Date(hourly.time[i]).toLocaleTimeString(
-            [],
-            {hour:"numeric"}
-          );
-
-        const weather = document.createElement("p");
-
-        weather.textContent =
-          weatherDescription(code);
-
-        const temp = document.createElement("strong");
-
-        temp.textContent =
-          hourly.temperature_2m[i] + "°C";
-
-        const chance = document.createElement("small");
-
-        chance.textContent =
-          "Precipitation: " +
-          hourly.precipitation_probability[i] + "%";
-
-        item.append(time,weather,temp,chance);
+        item.textContent =
+          forecastDate.toLocaleTimeString([], { hour: "numeric" }) +
+          " | " + hourly.temperature_2m[i] + "°C | " +
+          weatherDescription(code) +
+          " | Snow: " + snow + " cm";
 
         forecastBox.appendChild(item);
-
       }
-
     }
-
-    // SNOW ALERT
 
     const currentSnow = Number(now.snowfall || 0);
-
     const currentCode = Number(now.weather_code);
 
-    const snowCodes = [71,73,75,77,85,86];
-
-    const snowingNow =
-      currentSnow > 0 || snowCodes.includes(currentCode);
-
-    if (snowingNow) {
-
+    if (currentSnow > 0 || snowCodes.includes(currentCode)) {
       alertBox.className = "snow-alert";
-
       alertBox.textContent =
-        "❄️ SNOWFALL ALERT! Snow is currently indicated " +
-        "at your GPS location. Travel carefully and check " +
-        "official local road advisories.";
+        "❄️ SNOWFALL ALERT! Snow is currently indicated at your location. " +
+        "Current snowfall: " + currentSnow +
+        " cm. Please check official road advisories.";
 
-      sendSnowNotification(
-        "Snowfall is currently indicated at your location. Travel carefully."
-      );
+      sendSnowNotification("Snowfall is currently indicated at your location.");
 
     } else if (snowExpected) {
-
       alertBox.className = "snow-alert";
-
       alertBox.textContent =
-        "🌨️ SNOW WARNING! Snow is forecast within the " +
-        "next 24 hours. Highest hourly snowfall: " +
-        highestSnow + " cm around " + forecastTime +
-        ". Plan your journey carefully.";
+        "🌨️ SNOW WARNING! Snow is forecast in the next 24 hours. " +
+        "Maximum hourly snowfall: " + maxSnow +
+        " cm around " + snowTime + ". Please plan ahead.";
 
-      sendSnowNotification(
-        "Snow is forecast in the next 24 hours. Plan ahead."
-      );
+      sendSnowNotification("Snow is forecast in the next 24 hours.");
 
     } else {
-
       alertBox.className = "snow-alert safe";
-
       alertBox.textContent =
-        "✅ No snowfall is indicated currently or in the " +
-        "next 24 hours at your location. Keep checking " +
-        "weather conditions before travelling.";
-
+        "✅ No snowfall is forecast for your location in the next 24 hours. " +
+        "Temperature: " + now.temperature_2m +
+        "°C. Check again before travelling.";
     }
 
-    updated.textContent =
-      "Last updated: " + new Date().toLocaleString();
+    updated.textContent = "Last updated: " + new Date().toLocaleString();
 
   } catch (error) {
-
     alertBox.className = "snow-alert error";
-
-    alertBox.textContent =
-      "Unable to load weather. Check your internet connection and try again.";
-
-    currentBox.textContent =
-      "Weather information unavailable.";
-
-    forecastBox.innerHTML = "";
-
+    alertBox.textContent = "Weather error: " + error.message;
   } finally {
-
     checkWeatherBtn.disabled = false;
-    checkWeatherBtn.textContent =
-      "Check Live Snow Alert & Forecast";
-
+    checkWeatherBtn.textContent = "Check Live Snow Alert & Forecast";
   }
-
 }
-
-
-// ========================================
-// BROWSER NOTIFICATIONS
-// ========================================
-
-const enableNotifications =
-  document.getElementById("enableNotifications");
-
-const testNotification =
-  document.getElementById("testNotification");
-
-const notificationStatus =
-  document.getElementById("notificationStatus");
-
-enableNotifications.addEventListener("click", async function() {
-
-  if (!("Notification" in window)) {
-
-    notificationStatus.textContent =
-      "This browser does not support notifications.";
-
-    return;
-  }
-
-  const permission =
-    await Notification.requestPermission();
-
-  if (permission === "granted") {
-
-    notificationStatus.textContent =
-      "Notifications enabled successfully!";
-
-    testNotification.disabled = false;
-
-  } else {
-
-    notificationStatus.textContent =
-      "Notification permission was not granted.";
-
-  }
-
-});
-
-testNotification.addEventListener("click", function() {
-
-  if (
-    "Notification" in window &&
-    Notification.permission === "granted"
-  ) {
-
-    new Notification("❄️ SnowMove Test Alert", {
-      body:"Sample snowfall alert. Check the latest weather before travelling."
-    });
-
-    notificationStatus.textContent =
-      "Test notification sent.";
-
-  }
-
-});
-
-function sendSnowNotification(message) {
-
-  if (
-    "Notification" in window &&
-    Notification.permission === "granted"
-  ) {
-
-    new Notification("❄️ SnowMove Weather Alert", {
-      body:message
-    });
-
-  }
-
-}
-
-</script>
-
-</body>
-</html>
