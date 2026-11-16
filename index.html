@@ -14,11 +14,14 @@
   --cyan:#8ed8f8;
   --ink:#17344b;
   --muted:#587286;
+  --green:#16845b;
 }
+
 * {
   box-sizing:border-box;
   scroll-behavior:smooth;
 }
+
 body {
   margin:0;
   font-family:Arial,sans-serif;
@@ -26,6 +29,7 @@ body {
   background:#f5fbff;
   line-height:1.6;
 }
+
 nav {
   position:sticky;
   top:0;
@@ -39,22 +43,28 @@ nav {
   gap:12px;
   flex-wrap:wrap;
 }
+
 .logo {
   font-weight:800;
   font-size:1.4rem;
 }
+
 .logo span {color:var(--cyan)}
+
 nav .links {
   display:flex;
   gap:16px;
   flex-wrap:wrap;
 }
+
 nav a {
   color:white;
   text-decoration:none;
   font-size:.9rem;
 }
+
 nav a:hover {color:var(--cyan)}
+
 .hero {
   min-height:78vh;
   padding:95px 8%;
@@ -62,27 +72,32 @@ nav a:hover {color:var(--cyan)}
   align-items:center;
   color:white;
   background:
-  linear-gradient(90deg,rgba(5,29,51,.92),rgba(5,44,75,.48)),
-  url('https://images.unsplash.com/photo-1483664852095-d6cc6870702d?auto=format&fit=crop&w=2000&q=85')
-  center/cover;
+    linear-gradient(90deg,rgba(5,29,51,.92),rgba(5,44,75,.48)),
+    url('https://images.unsplash.com/photo-1483664852095-d6cc6870702d?auto=format&fit=crop&w=2000&q=85')
+    center/cover;
 }
+
 .hero-content {max-width:760px}
+
 .eyebrow {
   text-transform:uppercase;
   letter-spacing:3px;
   color:#a9e5ff;
   font-weight:bold;
 }
+
 h1 {
   font-size:clamp(2.6rem,6vw,5.2rem);
   line-height:1.04;
   margin:16px 0 22px;
 }
+
 .hero p {
   font-size:1.15rem;
   max-width:650px;
   color:#e2f4ff;
 }
+
 .btn,.action-btn {
   display:inline-block;
   padding:12px 19px;
@@ -94,21 +109,26 @@ h1 {
   font-weight:bold;
   cursor:pointer;
 }
+
 section {
   padding:70px 8%;
   scroll-margin-top:75px;
 }
+
 .section-head {
   text-align:center;
   max-width:740px;
   margin:0 auto 35px;
 }
+
 .section-head h2 {
   font-size:2.2rem;
   color:var(--navy);
   margin-bottom:8px;
 }
+
 .section-head p,.muted {color:var(--muted)}
+
 .tag {
   display:inline-block;
   background:#dff3ff;
@@ -118,11 +138,13 @@ section {
   font-size:.78rem;
   font-weight:bold;
 }
+
 .grid {
   display:grid;
   grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
   gap:18px;
 }
+
 .card,.panel {
   background:white;
   border:1px solid #dcecf6;
@@ -130,10 +152,12 @@ section {
   padding:23px;
   box-shadow:0 10px 28px rgba(20,74,110,.07);
 }
+
 .card h3,.panel h3 {color:var(--navy)}
 .card p {color:var(--muted)}
 .icon {font-size:1.8rem}
 .alt {background:#eaf6fd}
+
 .problem {
   max-width:900px;
   margin:auto;
@@ -142,48 +166,67 @@ section {
   padding:27px;
   border-radius:14px;
 }
+
 .diagram {
   display:grid;
   grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
   gap:14px;
 }
+
 .diagram .card {border-top:4px solid #65bfe9}
+
 .steps {
   display:grid;
   grid-template-columns:repeat(auto-fit,minmax(160px,1fr));
   gap:12px;
 }
+
 .step {
   background:white;
   border-radius:14px;
   padding:20px;
   border:1px solid #dcecf6;
 }
+
 .step b {color:var(--blue)}
+
 .solution {
   background:linear-gradient(135deg,#0a2b49,#126a9e);
   color:white;
 }
+
 .solution .section-head h2,
 .solution .section-head p {color:white}
+
 .solution .card {
   background:rgba(255,255,255,.1);
   border-color:rgba(255,255,255,.18);
 }
-.solution .card h3,.solution .card p {color:white}
+
+.solution .card h3,
+.solution .card p {color:white}
+
+.panel h3 {
+  margin-top:0;
+  color:var(--navy);
+}
+
 .action-btn {
   background:#126fa5;
   color:white;
   margin:7px 5px 7px 0;
 }
+
 .action-btn.secondary {
   background:#e3f4fd;
   color:#10577e;
 }
+
 .action-btn:disabled {
   opacity:.55;
   cursor:not-allowed;
 }
+
 input,select {
   font:inherit;
   border:1px solid #c9deeb;
@@ -194,7 +237,9 @@ input,select {
   background:white;
   color:var(--ink);
 }
+
 label {font-weight:bold}
+
 .status {
   padding:12px;
   background:#eef8fd;
@@ -204,6 +249,7 @@ label {font-weight:bold}
   color:#234d68;
   overflow-wrap:anywhere;
 }
+
 .map-frame {
   width:100%;
   height:340px;
@@ -211,12 +257,14 @@ label {font-weight:bold}
   border-radius:14px;
   background:#eaf6fd;
 }
+
 .alert-row {
   display:flex;
   gap:12px;
   padding:12px 0;
   border-bottom:1px solid #e5f0f6;
 }
+
 .dot {
   width:11px;
   height:11px;
@@ -225,29 +273,31 @@ label {font-weight:bold}
   margin-top:7px;
   flex:none;
 }
+
 .dot.info {background:#2196c9}
 .dot.safe {background:#28a36a}
+
 .quote {
   font-size:1.2rem;
   font-weight:bold;
   color:var(--navy);
 }
+
 footer {
   text-align:center;
   background:#061b2d;
   color:#cce6f5;
   padding:30px 8%;
 }
+
 @media(max-width:700px) {
   nav {
     align-items:flex-start;
     flex-direction:column;
   }
+
   nav .links {gap:10px}
-  .hero {
-    min-height:70vh;
-    padding:70px 7%;
-  }
+  .hero {min-height:70vh;padding:70px 7%}
   section {padding:55px 7%}
   .map-frame {height:280px}
 }
@@ -258,25 +308,29 @@ footer {
 
 <nav>
   <div class="logo">❄ Snow<span>Move</span></div>
+
   <div class="links">
     <a href="#problem">Problem</a>
     <a href="#affinity">Affinity Map</a>
     <a href="#empathy">Empathy Map</a>
     <a href="#journey">User Journey</a>
     <a href="#solutions">Solutions</a>
-    <a href="#gps">GPS & Directions</a>
+    <a href="#live-tools">Live Tools</a>
   </div>
 </nav>
 
 <header class="hero">
   <div class="hero-content">
     <div class="eyebrow">Design Thinking Project</div>
+
     <h1>When Snow Falls,<br>Movement Stops.</h1>
+
     <p>
       Exploring how heavy snowfall affects transportation,
       the challenges people face, and how thoughtful design
       can make winter travel safer and easier.
     </p>
+
     <a class="btn" href="#problem">Explore the project ↓</a>
   </div>
 </header>
@@ -287,6 +341,7 @@ footer {
     <h2>Problem Identification</h2>
     <p>Understanding everyday transportation difficulties caused by snowfall.</p>
   </div>
+
   <div class="problem">
     <strong>Problem statement:</strong>
     Heavy snowfall can cover roads, reduce visibility,
@@ -295,22 +350,26 @@ footer {
     emergency services and local residents to travel safely
     and reach their destinations on time.
   </div>
+
   <div class="grid" style="margin-top:22px">
     <div class="card">
       <div class="icon">🚗</div>
       <h3>Blocked roads</h3>
       <p>Snow accumulation can make roads difficult or impossible to use.</p>
     </div>
+
     <div class="card">
       <div class="icon">🚌</div>
       <h3>Transport delays</h3>
       <p>Buses and other public transport may be delayed or cancelled.</p>
     </div>
+
     <div class="card">
       <div class="icon">🧊</div>
       <h3>Slippery surfaces</h3>
       <p>Ice increases the risk of vehicles skidding and pedestrians falling.</p>
     </div>
+
     <div class="card">
       <div class="icon">🌨️</div>
       <h3>Low visibility</h3>
@@ -325,22 +384,26 @@ footer {
     <h2>Affinity Diagram</h2>
     <p>Grouping related problems to identify the main areas of concern.</p>
   </div>
+
   <div class="diagram">
     <div class="card">
       <div class="icon">🛣️</div>
       <h3>Road conditions</h3>
       <p>Snow-covered roads<br>Black ice<br>Blocked routes</p>
     </div>
+
     <div class="card">
       <div class="icon">🚍</div>
       <h3>Public transport</h3>
       <p>Bus delays<br>Cancelled services<br>Limited availability</p>
     </div>
+
     <div class="card">
       <div class="icon">🧍</div>
       <h3>People's safety</h3>
       <p>Falls and injuries<br>Cold exposure<br>Travel anxiety</p>
     </div>
+
     <div class="card">
       <div class="icon">📡</div>
       <h3>Information gaps</h3>
@@ -355,19 +418,23 @@ footer {
     <h2>Empathy Map</h2>
     <p>Considering what a person may think, feel, say and do during heavy snowfall.</p>
   </div>
+
   <div class="grid">
     <div class="card">
       <h3>💭 Thinks</h3>
       <p>“Will I reach college or work on time?”<br>“Is the road safe?”</p>
     </div>
+
     <div class="card">
       <h3>❤️ Feels</h3>
       <p>Worried, cold, stressed and uncertain about travelling.</p>
     </div>
+
     <div class="card">
       <h3>🗣️ Says</h3>
       <p>“The bus is late.”<br>“I need an updated road condition.”</p>
     </div>
+
     <div class="card">
       <h3>👣 Does</h3>
       <p>Checks weather updates, waits for transport and searches for a safer route.</p>
@@ -381,27 +448,32 @@ footer {
     <h2>User Journey Map</h2>
     <p>A simple journey of a student travelling during a snowy day.</p>
   </div>
+
   <div class="steps">
     <div class="step">
       <b>01 · Plans</b>
       <h3>Gets ready</h3>
       <p>Checks the weather and plans the trip.</p>
     </div>
+
     <div class="step">
       <b>02 · Travels</b>
       <h3>Leaves home</h3>
       <p>Finds snow on roads and reduced visibility.</p>
     </div>
+
     <div class="step">
       <b>03 · Faces issue</b>
       <h3>Waits for transport</h3>
       <p>Experiences delays or route changes.</p>
     </div>
+
     <div class="step">
       <b>04 · Responds</b>
       <h3>Finds an update</h3>
       <p>Looks for safe routes and reliable travel information.</p>
     </div>
+
     <div class="step">
       <b>05 · Reaches</b>
       <h3>Arrives late</h3>
@@ -416,22 +488,26 @@ footer {
     <h2>Possible Solutions</h2>
     <p>Design opportunities that could reduce winter travel difficulties.</p>
   </div>
+
   <div class="grid">
     <div class="card">
       <div class="icon">📱</div>
       <h3>Live snow alerts</h3>
       <p>Provide timely weather, road closure and transport updates.</p>
     </div>
+
     <div class="card">
       <div class="icon">🧭</div>
       <h3>Safer route guidance</h3>
       <p>Help travellers identify open routes and avoid hazardous roads.</p>
     </div>
+
     <div class="card">
       <div class="icon">🚜</div>
       <h3>Snow clearance updates</h3>
       <p>Show which roads have been cleared and where work is underway.</p>
     </div>
+
     <div class="card">
       <div class="icon">🚌</div>
       <h3>Transport coordination</h3>
@@ -440,52 +516,94 @@ footer {
   </div>
 </section>
 
-<section class="alt" id="gps">
+<section class="alt" id="live-tools">
   <div class="section-head">
     <span class="tag">06 · Interactive prototype</span>
-    <h2>GPS Location & Directions</h2>
+    <h2>Live Tools: Alerts, GPS & Directions</h2>
     <p>
-      Allow location access to see your position on the map,
-      then enter a destination to open directions in Google Maps.
+      Get sample winter travel alerts, find your current location
+      and open directions to your destination.
     </p>
   </div>
 
   <div class="grid">
+
     <div class="panel">
-      <h3>📍 Find my current location</h3>
+      <h3>📲 Mobile Alerts</h3>
+
       <p class="muted">
-        Your browser will ask for permission.
-        Your location is used to show the map and create directions.
+        Allow browser notifications on a supported device,
+        then send a sample alert.
       </p>
-      <button class="action-btn" id="locateBtn">
-        Use my current location
+
+      <button class="action-btn" id="enableNotificationsBtn">
+        Enable notifications
       </button>
-      <div id="gpsStatus" class="status" aria-live="polite">
-        Location not yet detected. Tap the button and allow location access.
+
+      <button class="action-btn secondary" id="testAlertBtn" disabled>
+        Send test alert
+      </button>
+
+      <div id="notificationStatus" class="status" aria-live="polite">
+        Notifications are not enabled yet.
       </div>
-      <iframe
-        id="mapFrame"
-        class="map-frame"
-        title="Map showing your current location"
-        loading="lazy"
-        src="https://www.openstreetmap.org/export/embed.html?bbox=73.7%2C32.5%2C78.5%2C34.5&layer=mapnik">
-      </iframe>
+
+      <div class="alert-row">
+        <span class="dot"></span>
+        <div>
+          <strong>Snowfall warning</strong>
+          <p class="muted">Heavy snowfall may reduce visibility. Travel carefully.</p>
+        </div>
+      </div>
+
+      <div class="alert-row">
+        <span class="dot info"></span>
+        <div>
+          <strong>Transport update</strong>
+          <p class="muted">Check your bus or service provider before leaving.</p>
+        </div>
+      </div>
+
+      <div class="alert-row">
+        <span class="dot safe"></span>
+        <div>
+          <strong>Safety reminder</strong>
+          <p class="muted">Wear warm clothing and avoid unnecessary travel during severe conditions.</p>
+        </div>
+      </div>
+
       <p class="muted">
-        Map tiles are provided by OpenStreetMap.
-        Location accuracy depends on your device and browser.
+        <small>These are sample alerts for the project demonstration,
+        not live weather or road notifications.</small>
       </p>
     </div>
 
     <div class="panel">
-      <h3>🧭 Get directions</h3>
-      <label for="destination">Enter destination</label>
+      <h3>📍 GPS Location & Directions</h3>
+
+      <p class="muted">
+        Allow location access to show your current position,
+        then enter a destination for directions.
+      </p>
+
+      <button class="action-btn" id="locateBtn">
+        Use my current location
+      </button>
+
+      <div id="gpsStatus" class="status" aria-live="polite">
+        Location not yet detected. Tap the button and allow location access.
+      </div>
+
+      <label for="destination">Destination</label>
+
       <input
         id="destination"
         type="text"
-        placeholder="e.g. Chandigarh Railway Station"
+        placeholder="Enter a place or address"
         autocomplete="street-address">
 
       <label for="travelMode">Travel mode</label>
+
       <select id="travelMode">
         <option value="driving">Driving</option>
         <option value="walking">Walking</option>
@@ -494,32 +612,49 @@ footer {
       </select>
 
       <button class="action-btn" id="directionsBtn">
-        Get directions in Google Maps
+        🧭 Get directions in Google Maps
       </button>
 
       <div id="directionsStatus" class="status" aria-live="polite">
         First detect your current location, then enter a destination.
       </div>
-
-      <p class="muted">
-        Google Maps will calculate the route. Always check local road closures,
-        weather warnings and official travel advice. This prototype does not
-        verify whether a road is safe in snow.
-      </p>
     </div>
+
   </div>
 
   <div class="panel" style="margin-top:18px">
-    <h3>🚨 Winter travel safety checklist</h3>
+    <h3>🗺️ Your Location Map</h3>
+
+    <iframe
+      id="mapFrame"
+      class="map-frame"
+      title="Map showing your current location"
+      loading="lazy"
+      src="https://www.openstreetmap.org/export/embed.html?bbox=73.7%2C32.5%2C78.5%2C34.5&layer=mapnik">
+    </iframe>
+
+    <p class="muted">
+      Map tiles are provided by OpenStreetMap.
+      Google Maps calculates directions.
+      This prototype does not verify live snow conditions
+      or guarantee a road is safe.
+    </p>
+  </div>
+
+  <div class="panel" style="margin-top:18px">
+    <h3>🚨 Emergency travel checklist</h3>
+
     <div class="grid">
       <div>
         <strong>Before leaving</strong>
         <p class="muted">Check official weather and road advisories.</p>
       </div>
+
       <div>
         <strong>While travelling</strong>
         <p class="muted">Move slowly, keep distance and avoid icy shortcuts.</p>
       </div>
+
       <div>
         <strong>If conditions worsen</strong>
         <p class="muted">Stop somewhere safe and contact local emergency services if needed.</p>
@@ -532,16 +667,19 @@ footer {
   <div class="section-head">
     <span class="tag">07 · Conclusion</span>
     <h2>Making Winter Travel Safer</h2>
+
     <p>
       Snowfall is a natural challenge, but better information,
       safer routes and coordinated transport services can help
       people travel with greater confidence.
     </p>
   </div>
+
   <div class="problem" style="text-align:center">
     <div class="quote">
       “A safer journey begins with understanding the traveller.”
     </div>
+
     <p>
       Design thinking helps us understand real needs and
       develop human-centred solutions for everyday problems.
@@ -562,12 +700,12 @@ const gpsStatus = document.getElementById("gpsStatus");
 const mapFrame = document.getElementById("mapFrame");
 const locateBtn = document.getElementById("locateBtn");
 
-// Find current GPS location
+// Get the user's current GPS location.
 locateBtn.addEventListener("click", () => {
 
   if (!("geolocation" in navigator)) {
     gpsStatus.textContent =
-      "GPS is not supported by this browser.";
+      "Geolocation is not supported by this browser.";
     return;
   }
 
@@ -599,11 +737,11 @@ locateBtn.addEventListener("click", () => {
         lat - delta,
         lon + delta,
         lat + delta
-      ].join(",");
+      ].join("%2C");
 
       mapFrame.src =
         `https://www.openstreetmap.org/export/embed.html?bbox=${bbox}` +
-        `&layer=mapnik&marker=${lat},${lon}`;
+        `&layer=mapnik&marker=${lat}%2C${lon}`;
 
       locateBtn.disabled = false;
       locateBtn.textContent = "Refresh my location";
@@ -635,7 +773,7 @@ locateBtn.addEventListener("click", () => {
   );
 });
 
-// Open Google Maps directions
+// Get directions using Google Maps.
 document.getElementById("directionsBtn").addEventListener("click", () => {
 
   const destination =
@@ -669,7 +807,72 @@ document.getElementById("directionsBtn").addEventListener("click", () => {
 
   output.textContent = "Opening Google Maps directions...";
 
-  window.open(url, "_blank");
+  window.open(url, "_blank", "noopener,noreferrer");
+
+});
+
+// Enable browser notifications.
+const enableNotificationsBtn =
+  document.getElementById("enableNotificationsBtn");
+
+const testAlertBtn =
+  document.getElementById("testAlertBtn");
+
+const notificationStatus =
+  document.getElementById("notificationStatus");
+
+enableNotificationsBtn.addEventListener("click", async () => {
+
+  if (!("Notification" in window)) {
+    notificationStatus.textContent =
+      "This browser does not support notifications.";
+    return;
+  }
+
+  try {
+
+    const permission = await Notification.requestPermission();
+
+    if (permission === "granted") {
+
+      notificationStatus.textContent =
+        "Notifications enabled! Try the test alert.";
+
+      testAlertBtn.disabled = false;
+
+    } else {
+
+      notificationStatus.textContent =
+        "Notifications were not allowed. Enable them in browser site settings.";
+
+    }
+
+  } catch (error) {
+
+    notificationStatus.textContent =
+      "Could not request notification permission in this browser.";
+
+  }
+
+});
+
+// Send a sample notification.
+testAlertBtn.addEventListener("click", () => {
+
+  if (!("Notification" in window) ||
+      Notification.permission !== "granted") {
+
+    notificationStatus.textContent =
+      "Please enable notifications first.";
+
+    return;
+  }
+
+  new Notification("❄ SnowMove travel alert", {
+    body: "Sample alert: Heavy snowfall may reduce visibility. Check official road updates before travelling."
+  });
+
+  notificationStatus.textContent = "Sample notification sent.";
 
 });
 </script>
